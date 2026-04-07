@@ -22,20 +22,17 @@ apis:
     humanURL: https://www.oracle.com/database/technologies/appdev/rest.html
     baseURL: https://example.oracle.com:8443/ords/
     tags:
-      - database
-      - rest
-      - sql
-      - oracle
+      - Database
+      - Oracle
+      - Rest
+      - Sql
     properties:
       - type: Documentation
-        url: 
-          https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/19.2/
+        url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/19.2/
       - type: OpenAPI
-        url: 
-          https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/19.2/openapi.json
+        url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/19.2/openapi.json
       - type: Authentication
-        url: 
-          https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/19.2/orddg/developing-REST-applications.html#GUID-6C4B8D2F-A5F0-4E1E-8F9E-8B6F5E9C9F9E
+        url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/19.2/orddg/developing-REST-applications.html#GUID-6C4B8D2F-A5F0-4E1E-8F9E-8B6F5E9C9F9E
     contact:
       - type: Support
         url: https://support.oracle.com
@@ -44,21 +41,18 @@ apis:
       Document-oriented NoSQL-style API for storing, retrieving, and querying JSON
       documents in Oracle Database.
     image: https://www.oracle.com/a/ocom/img/sql.svg
-    humanURL: 
-      https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/
+    humanURL: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/
     baseURL: https://example.oracle.com:8443/ords/
     tags:
-      - nosql
-      - json
-      - document-store
-      - oracle
+      - Document-Store
+      - Json
+      - Nosql
+      - Oracle
     properties:
       - type: Documentation
-        url: 
-          https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/rest/
+        url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/rest/
       - type: REST API Guide
-        url: 
-          https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/rest/adrst/index.html
+        url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/rest/adrst/index.html
       - type: Tutorial
         url: https://oracle.github.io/json-in-db/
   - name: Oracle SQL Developer Web
@@ -66,14 +60,13 @@ apis:
       Browser-based interface for Oracle Database providing SQL worksheet, data modeler,
       and database administration capabilities.
     image: https://www.oracle.com/a/ocom/img/sql.svg
-    humanURL: 
-      https://www.oracle.com/database/technologies/appdev/sql-developer-web.html
+    humanURL: https://www.oracle.com/database/technologies/appdev/sql-developer-web.html
     baseURL: https://example.oracle.com:8443/ords/sql-developer/
     tags:
-      - sql
-      - development
-      - administration
-      - web-interface
+      - Administration
+      - Development
+      - Sql
+      - Web-Interface
     properties:
       - type: Documentation
         url: https://docs.oracle.com/en/database/oracle/sql-developer-web/
@@ -86,10 +79,10 @@ apis:
     humanURL: https://www.oracle.com/database/mongodb-api/
     baseURL: mongodb://example.oracle.com:27017/
     tags:
-      - mongodb
-      - compatibility
-      - nosql
-      - document-store
+      - Compatibility
+      - Document-Store
+      - Mongodb
+      - Nosql
     properties:
       - type: Documentation
         url: https://docs.oracle.com/en/database/oracle/mongodb-api/
@@ -99,21 +92,18 @@ apis:
     description: >-
       RESTful API for managing JSON document collections with CRUD operations.
     image: https://www.oracle.com/a/ocom/img/sql.svg
-    humanURL: 
-      https://docs.oracle.com/en/database/oracle/oracle-database/19/adjsn/
+    humanURL: https://docs.oracle.com/en/database/oracle/oracle-database/19/adjsn/
     baseURL: https://example.oracle.com:8443/ords/
     tags:
-      - json
-      - collections
-      - rest
-      - document-api
+      - Collections
+      - Document-Api
+      - Json
+      - Rest
     properties:
       - type: Documentation
-        url: 
-          https://docs.oracle.com/en/database/oracle/oracle-database/19/adjsn/json-collections.html
+        url: https://docs.oracle.com/en/database/oracle/oracle-database/19/adjsn/json-collections.html
       - type: Developer Guide
-        url: 
-          https://docs.oracle.com/en/database/oracle/oracle-database/19/adjsn/
+        url: https://docs.oracle.com/en/database/oracle/oracle-database/19/adjsn/
   - name: Oracle Database REST API for AutoML
     description: >-
       REST APIs for Oracle Machine Learning AutoML capabilities including model building
@@ -122,29 +112,27 @@ apis:
     humanURL: https://docs.oracle.com/en/database/oracle/machine-learning/
     baseURL: https://example.oracle.com:8443/omlmod/
     tags:
-      - machine-learning
-      - automl
-      - ai
-      - analytics
+      - Ai
+      - Analytics
+      - Automl
+      - Machine-Learning
     properties:
       - type: Documentation
-        url: 
-          https://docs.oracle.com/en/database/oracle/machine-learning/oml4sql/19/
+        url: https://docs.oracle.com/en/database/oracle/machine-learning/oml4sql/19/
       - type: API Reference
-        url: 
-          https://docs.oracle.com/en/cloud/paas/autonomous-database/omlug/rest-endpoints.html
+        url: https://docs.oracle.com/en/cloud/paas/autonomous-database/omlug/rest-endpoints.html
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
 tags:
-  - database
-  - enterprise
-  - sql
-  - nosql
-  - rest
-  - json
-  - oracle
-  - machine-learning
+  - Database
+  - Enterprise
+  - Json
+  - Machine-Learning
+  - Nosql
+  - Oracle
+  - Rest
+  - Sql
 include:
   - name: Oracle Database Enterprise Edition Features
     url: https://www.oracle.com/database/technologies/enterprise-edition.html
@@ -160,7 +148,6 @@ common:
   - type: Community Forums
     url: https://community.oracle.com/tech/developers/categories/oracle-database
   - type: Downloads
-    url: 
-      https://www.oracle.com/database/technologies/oracle-database-software-downloads.html
+    url: https://www.oracle.com/database/technologies/oracle-database-software-downloads.html
   - type: Pricing
     url: https://www.oracle.com/database/technologies/database-pricing.html
