@@ -1,60 +1,69 @@
 # Oracle Database 19c (oracle-database-19c)
+
 Oracle Database 19c is a multi-model database management system that provides a comprehensive platform for enterprise data management, analytics, and application development.
 
-**URL:** [Visit APIs.json URL](https://www.oracle.com/database/technologies/appdev/19c.html)
+**APIs.json:** [apis.yml](apis.yml)
 
-## Tags:
+## Tags
 
- - database, enterprise, sql, nosql, rest, json, oracle, machine-learning
+Database, Enterprise, Json, Machine-Learning, Nosql, Oracle, Rest, Sql
 
 ## Timestamps
 
-- **Created:** 2024-01-15 00:00:00+00:00 
-- **Modified:** 2024-01-15 00:00:00+00:00 
+- **Created:** 2024-01-15
+- **Modified:** 2026-04-28
 
 ## APIs
 
 ### Oracle REST Data Services (ORDS)
-RESTful web services for Oracle Database enabling HTTP access to database resources, SQL queries, and PL/SQL procedures
 
-**Human URL:** [https://www.oracle.com/database/technologies/appdev/rest.html](https://www.oracle.com/database/technologies/appdev/rest.html)
+RESTful web services for Oracle Database enabling HTTP access to database resources, SQL queries, and PL/SQL procedures.
 
+- **Human URL:** https://www.oracle.com/database/technologies/appdev/rest.html
+- **Base URL:** `https://example.oracle.com:8443/ords/`
 
-#### Tags:
+#### Tags
 
- - database, rest, sql, oracle
+Database, Oracle, Rest, Sql
 
 #### Properties
 
 - [Documentation](https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/19.2/)
-- [OpenAPI](https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/19.2/openapi.json)
-- [Authentication](https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/19.2/orddg/developing-REST-applications.html#GUID-6C4B8D2F-A5F0-4E1E-8F9E-8B6F5E9C9F9E)
+- [API Reference](https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/19.2/orrst/)
+- [Authentication](https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/19.2/orddg/developing-REST-applications.html)
+- [OpenAPI](openapi/oracle-database-19c-ords-openapi.yml)
+- [JSONLD](json-ld/oracle-database-19c-context.jsonld)
 
 ### Oracle Database SODA (Simple Oracle Document Access)
-Document-oriented NoSQL-style API for storing, retrieving, and querying JSON documents in Oracle Database
 
-**Human URL:** [https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/](https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/)
+Document-oriented NoSQL-style API for storing, retrieving, and querying JSON documents in Oracle Database.
 
+- **Human URL:** https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/
+- **Base URL:** `https://example.oracle.com:8443/ords/`
 
-#### Tags:
+#### Tags
 
- - nosql, json, document-store, oracle
+Document-Store, Json, Nosql, Oracle
 
 #### Properties
 
 - [Documentation](https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/rest/)
 - [REST API Guide](https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/rest/adrst/index.html)
 - [Tutorial](https://oracle.github.io/json-in-db/)
+- [JSONSchema (Collection)](json-schema/oracle-database-19c-soda-collection.json)
+- [JSONSchema (Document)](json-schema/oracle-database-19c-soda-document.json)
+- [JSONLD](json-ld/oracle-database-19c-context.jsonld)
 
 ### Oracle SQL Developer Web
-Browser-based interface for Oracle Database providing SQL worksheet, data modeler, and database administration capabilities
 
-**Human URL:** [https://www.oracle.com/database/technologies/appdev/sql-developer-web.html](https://www.oracle.com/database/technologies/appdev/sql-developer-web.html)
+Browser-based interface for Oracle Database providing SQL worksheet, data modeler, and database administration capabilities.
 
+- **Human URL:** https://www.oracle.com/database/technologies/appdev/sql-developer-web.html
+- **Base URL:** `https://example.oracle.com:8443/ords/sql-developer/`
 
-#### Tags:
+#### Tags
 
- - sql, development, administration, web-interface
+Administration, Development, Sql, Web-Interface
 
 #### Properties
 
@@ -62,14 +71,15 @@ Browser-based interface for Oracle Database providing SQL worksheet, data modele
 - [Getting Started](https://docs.oracle.com/en/database/oracle/sql-developer-web/sdwad/)
 
 ### Oracle Database API for MongoDB
-MongoDB-compatible API allowing MongoDB applications to connect to Oracle Database
 
-**Human URL:** [https://www.oracle.com/database/mongodb-api/](https://www.oracle.com/database/mongodb-api/)
+MongoDB-compatible API allowing MongoDB applications to connect to Oracle Database.
 
+- **Human URL:** https://www.oracle.com/database/mongodb-api/
+- **Base URL:** `mongodb://example.oracle.com:27017/`
 
-#### Tags:
+#### Tags
 
- - mongodb, compatibility, nosql, document-store
+Compatibility, Document-Store, Mongodb, Nosql
 
 #### Properties
 
@@ -77,14 +87,15 @@ MongoDB-compatible API allowing MongoDB applications to connect to Oracle Databa
 - [Quick Start](https://www.oracle.com/database/mongodb-api/quickstart.html)
 
 ### Oracle Database JSON Collections API
-RESTful API for managing JSON document collections with CRUD operations
 
-**Human URL:** [https://docs.oracle.com/en/database/oracle/oracle-database/19/adjsn/](https://docs.oracle.com/en/database/oracle/oracle-database/19/adjsn/)
+RESTful API for managing JSON document collections with CRUD operations.
 
+- **Human URL:** https://docs.oracle.com/en/database/oracle/oracle-database/19/adjsn/
+- **Base URL:** `https://example.oracle.com:8443/ords/`
 
-#### Tags:
+#### Tags
 
- - json, collections, rest, document-api
+Collections, Document-Api, Json, Rest
 
 #### Properties
 
@@ -92,14 +103,15 @@ RESTful API for managing JSON document collections with CRUD operations
 - [Developer Guide](https://docs.oracle.com/en/database/oracle/oracle-database/19/adjsn/)
 
 ### Oracle Database REST API for AutoML
-REST APIs for Oracle Machine Learning AutoML capabilities including model building and deployment
 
-**Human URL:** [https://docs.oracle.com/en/database/oracle/machine-learning/](https://docs.oracle.com/en/database/oracle/machine-learning/)
+REST APIs for Oracle Machine Learning AutoML capabilities including model building and deployment.
 
+- **Human URL:** https://docs.oracle.com/en/database/oracle/machine-learning/
+- **Base URL:** `https://example.oracle.com:8443/omlmod/`
 
-#### Tags:
+#### Tags
 
- - machine-learning, automl, ai, analytics
+Ai, Analytics, Automl, Machine-Learning
 
 #### Properties
 
@@ -117,6 +129,5 @@ REST APIs for Oracle Machine Learning AutoML capabilities including model buildi
 
 ## Maintainers
 
-**FN:** Oracle Corporation
-
-**Email:** oracle-database-support@oracle.com
+- **FN:** Kin Lane
+- **Email:** kin@apievangelist.com

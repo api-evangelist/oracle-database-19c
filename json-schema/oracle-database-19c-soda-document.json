@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/oracle-database-19c/main/json-schema/oracle-database-19c-soda-document.json",
+  "title": "SODA Document",
+  "description": "A document stored in a SODA collection in Oracle Database 19c.",
+  "type": "object",
+  "required": ["id"],
+  "properties": {
+    "id": { "type": "string", "description": "Document key" },
+    "etag": { "type": "string" },
+    "lastModified": { "type": "string", "format": "date-time" },
+    "created": { "type": "string", "format": "date-time" },
+    "mediaType": { "type": "string", "default": "application/json" },
+    "version": { "type": "string" },
+    "value": {
+      "description": "JSON content of the document",
+      "oneOf": [
+        { "type": "object", "additionalProperties": true },
+        { "type": "array" }
+      ]
+    }
+  }
+}

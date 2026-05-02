@@ -1,0 +1,37 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "oracle": "https://oracle.com/schemas/database/",
+    "ords": "https://oracle.com/schemas/database/ords/",
+    "soda": "https://oracle.com/schemas/database/soda/",
+
+    "Database": "oracle:Database",
+    "Schema": "oracle:Schema",
+    "Table": "oracle:Table",
+    "View": "oracle:View",
+    "Column": "oracle:Column",
+    "Collection": "soda:Collection",
+    "Document": "soda:Document",
+    "RestEnabledObject": "ords:RestEnabledObject",
+    "Module": "ords:Module",
+    "Template": "ords:Template",
+    "Handler": "ords:Handler",
+
+    "schemaName": { "@id": "oracle:schemaName", "@type": "xsd:string" },
+    "tableName": { "@id": "oracle:tableName", "@type": "xsd:string" },
+    "columnName": { "@id": "oracle:columnName", "@type": "xsd:string" },
+    "dataType": { "@id": "oracle:dataType", "@type": "xsd:string" },
+    "primaryKey": { "@id": "oracle:primaryKey", "@type": "xsd:boolean" },
+    "nullable": { "@id": "oracle:nullable", "@type": "xsd:boolean" },
+
+    "collectionName": { "@id": "soda:collectionName", "@type": "xsd:string" },
+    "documentKey": { "@id": "soda:documentKey", "@type": "xsd:string" },
+    "mediaType": { "@id": "soda:mediaType", "@type": "xsd:string" },
+    "version": { "@id": "soda:version", "@type": "xsd:string" },
+
+    "modulePattern": { "@id": "ords:modulePattern", "@type": "xsd:string" },
+    "uriTemplate": { "@id": "ords:uriTemplate", "@type": "xsd:string" },
+    "method": { "@id": "ords:method", "@type": "xsd:string" },
+    "sourceType": { "@id": "ords:sourceType", "@type": "xsd:string" }
+  }
+}
