@@ -1,0 +1,629 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Oracle Database 19c - Oracle REST Data Services (ORDS) API
+  description: Oracle REST Data Services (ORDS) on Oracle Database 19c. Exposes RESTful endpoints for SQL queries, PL/SQL
+    execution, schema management, AutoREST table access, SODA document collections, and the data dictionary catalog.
+  tags:
+  - Oracle
+  - Database
+  - 19c
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: oracle-database-19c
+    baseUri: https://localhost:8443/ords
+    description: Oracle Database 19c - Oracle REST Data Services (ORDS) API HTTP API.
+    authentication:
+      type: basic
+      username: '{{ORACLE_DATABASE_19C_USERNAME}}'
+      password: '{{ORACLE_DATABASE_19C_PASSWORD}}'
+    resources:
+    - name: schema-sql
+      path: /{schema}/_/sql
+      operations:
+      - name: executesql
+        method: POST
+        description: Execute SQL
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: schema-metadata-catalog
+      path: /{schema}/metadata-catalog/
+      operations:
+      - name: getmetadatacatalog
+        method: GET
+        description: List the schema's REST endpoints catalog
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: schema-table
+      path: /{schema}/{table}/
+      operations:
+      - name: querytable
+        method: GET
+        description: Query an AutoREST-enabled table or view
+        inputParameters:
+        - name: table
+          in: path
+          type: string
+          required: true
+        - name: q
+          in: query
+          type: string
+        - name: limit
+          in: query
+          type: integer
+        - name: offset
+          in: query
+          type: integer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: insertrow
+        method: POST
+        description: Insert a row
+        inputParameters:
+        - name: table
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: schema-table-id
+      path: /{schema}/{table}/{id}
+      operations:
+      - name: getrow
+        method: GET
+        description: Get a row by primary key
+        inputParameters:
+        - name: table
+          in: path
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updaterow
+        method: PUT
+        description: Update a row by primary key
+        inputParameters:
+        - name: table
+          in: path
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleterow
+        method: DELETE
+        description: Delete a row
+        inputParameters:
+        - name: table
+          in: path
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: schema-soda-latest-collection
+      path: /{schema}/soda/latest/{collection}
+      operations:
+      - name: listsodadocuments
+        method: GET
+        description: List documents in a SODA collection
+        inputParameters:
+        - name: collection
+          in: path
+          type: string
+          required: true
+        - name: limit
+          in: query
+          type: integer
+        - name: offset
+          in: query
+          type: integer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: insertsodadocument
+        method: POST
+        description: Insert a document into a SODA collection
+        inputParameters:
+        - name: collection
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: schema-soda-latest-collection-key
+      path: /{schema}/soda/latest/{collection}/{key}
+      operations:
+      - name: getsodadocument
+        method: GET
+        description: Get a SODA document by key
+        inputParameters:
+        - name: collection
+          in: path
+          type: string
+          required: true
+        - name: key
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: replacesodadocument
+        method: PUT
+        description: Replace a SODA document
+        inputParameters:
+        - name: collection
+          in: path
+          type: string
+          required: true
+        - name: key
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deletesodadocument
+        method: DELETE
+        description: Delete a SODA document
+        inputParameters:
+        - name: collection
+          in: path
+          type: string
+          required: true
+        - name: key
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: oracle-database-19c-rest
+    description: REST adapter for Oracle Database 19c - Oracle REST Data Services (ORDS) API.
+    resources:
+    - path: /{schema}/_/sql
+      name: executesql
+      operations:
+      - method: POST
+        name: executesql
+        description: Execute SQL
+        call: oracle-database-19c.executesql
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /{schema}/metadata-catalog/
+      name: getmetadatacatalog
+      operations:
+      - method: GET
+        name: getmetadatacatalog
+        description: List the schema's REST endpoints catalog
+        call: oracle-database-19c.getmetadatacatalog
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /{schema}/{table}/
+      name: querytable
+      operations:
+      - method: GET
+        name: querytable
+        description: Query an AutoREST-enabled table or view
+        call: oracle-database-19c.querytable
+        with:
+          table: rest.table
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /{schema}/{table}/
+      name: insertrow
+      operations:
+      - method: POST
+        name: insertrow
+        description: Insert a row
+        call: oracle-database-19c.insertrow
+        with:
+          table: rest.table
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /{schema}/{table}/{id}
+      name: getrow
+      operations:
+      - method: GET
+        name: getrow
+        description: Get a row by primary key
+        call: oracle-database-19c.getrow
+        with:
+          table: rest.table
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /{schema}/{table}/{id}
+      name: updaterow
+      operations:
+      - method: PUT
+        name: updaterow
+        description: Update a row by primary key
+        call: oracle-database-19c.updaterow
+        with:
+          table: rest.table
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /{schema}/{table}/{id}
+      name: deleterow
+      operations:
+      - method: DELETE
+        name: deleterow
+        description: Delete a row
+        call: oracle-database-19c.deleterow
+        with:
+          table: rest.table
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /{schema}/soda/latest/{collection}
+      name: listsodadocuments
+      operations:
+      - method: GET
+        name: listsodadocuments
+        description: List documents in a SODA collection
+        call: oracle-database-19c.listsodadocuments
+        with:
+          collection: rest.collection
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /{schema}/soda/latest/{collection}
+      name: insertsodadocument
+      operations:
+      - method: POST
+        name: insertsodadocument
+        description: Insert a document into a SODA collection
+        call: oracle-database-19c.insertsodadocument
+        with:
+          collection: rest.collection
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /{schema}/soda/latest/{collection}/{key}
+      name: getsodadocument
+      operations:
+      - method: GET
+        name: getsodadocument
+        description: Get a SODA document by key
+        call: oracle-database-19c.getsodadocument
+        with:
+          collection: rest.collection
+          key: rest.key
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /{schema}/soda/latest/{collection}/{key}
+      name: replacesodadocument
+      operations:
+      - method: PUT
+        name: replacesodadocument
+        description: Replace a SODA document
+        call: oracle-database-19c.replacesodadocument
+        with:
+          collection: rest.collection
+          key: rest.key
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /{schema}/soda/latest/{collection}/{key}
+      name: deletesodadocument
+      operations:
+      - method: DELETE
+        name: deletesodadocument
+        description: Delete a SODA document
+        call: oracle-database-19c.deletesodadocument
+        with:
+          collection: rest.collection
+          key: rest.key
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: oracle-database-19c-mcp
+    transport: http
+    description: MCP adapter for Oracle Database 19c - Oracle REST Data Services (ORDS) API for AI agent use.
+    tools:
+    - name: executesql
+      description: Execute SQL
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: oracle-database-19c.executesql
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getmetadatacatalog
+      description: List the schema's REST endpoints catalog
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oracle-database-19c.getmetadatacatalog
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: querytable
+      description: Query an AutoREST-enabled table or view
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oracle-database-19c.querytable
+      with:
+        table: tools.table
+        q: tools.q
+        limit: tools.limit
+        offset: tools.offset
+      inputParameters:
+      - name: table
+        type: string
+        description: table
+        required: true
+      - name: q
+        type: string
+        description: q
+      - name: limit
+        type: integer
+        description: limit
+      - name: offset
+        type: integer
+        description: offset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: insertrow
+      description: Insert a row
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: oracle-database-19c.insertrow
+      with:
+        table: tools.table
+      inputParameters:
+      - name: table
+        type: string
+        description: table
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getrow
+      description: Get a row by primary key
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oracle-database-19c.getrow
+      with:
+        table: tools.table
+        id: tools.id
+      inputParameters:
+      - name: table
+        type: string
+        description: table
+        required: true
+      - name: id
+        type: string
+        description: id
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updaterow
+      description: Update a row by primary key
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: oracle-database-19c.updaterow
+      with:
+        table: tools.table
+        id: tools.id
+      inputParameters:
+      - name: table
+        type: string
+        description: table
+        required: true
+      - name: id
+        type: string
+        description: id
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deleterow
+      description: Delete a row
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: oracle-database-19c.deleterow
+      with:
+        table: tools.table
+        id: tools.id
+      inputParameters:
+      - name: table
+        type: string
+        description: table
+        required: true
+      - name: id
+        type: string
+        description: id
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listsodadocuments
+      description: List documents in a SODA collection
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oracle-database-19c.listsodadocuments
+      with:
+        collection: tools.collection
+        limit: tools.limit
+        offset: tools.offset
+      inputParameters:
+      - name: collection
+        type: string
+        description: collection
+        required: true
+      - name: limit
+        type: integer
+        description: limit
+      - name: offset
+        type: integer
+        description: offset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: insertsodadocument
+      description: Insert a document into a SODA collection
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: oracle-database-19c.insertsodadocument
+      with:
+        collection: tools.collection
+      inputParameters:
+      - name: collection
+        type: string
+        description: collection
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getsodadocument
+      description: Get a SODA document by key
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oracle-database-19c.getsodadocument
+      with:
+        collection: tools.collection
+        key: tools.key
+      inputParameters:
+      - name: collection
+        type: string
+        description: collection
+        required: true
+      - name: key
+        type: string
+        description: key
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: replacesodadocument
+      description: Replace a SODA document
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: oracle-database-19c.replacesodadocument
+      with:
+        collection: tools.collection
+        key: tools.key
+      inputParameters:
+      - name: collection
+        type: string
+        description: collection
+        required: true
+      - name: key
+        type: string
+        description: key
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deletesodadocument
+      description: Delete a SODA document
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: oracle-database-19c.deletesodadocument
+      with:
+        collection: tools.collection
+        key: tools.key
+      inputParameters:
+      - name: collection
+        type: string
+        description: collection
+        required: true
+      - name: key
+        type: string
+        description: key
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+binds:
+- namespace: env
+  keys:
+    ORACLE_DATABASE_19C_USERNAME: ORACLE_DATABASE_19C_USERNAME
+    ORACLE_DATABASE_19C_PASSWORD: ORACLE_DATABASE_19C_PASSWORD
