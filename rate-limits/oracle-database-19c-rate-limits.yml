@@ -4,114 +4,49 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Oracle Database 19c
 providerId: oracle-database-19c
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
   - Database
-  - Enterprise
-  - Json
-  - Machine-Learning
-  - Nosql
   - Oracle
-  - Rest
-  - Sql
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Oracle Database 19c API surface. Captures
-  per-tier quotas, burst behavior, response signaling, and recovery semantics. Defaults are scaffold values
-  to be replaced with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+notes: 19c is on-prem / cloud-deployed software. Throughput is bounded by licensed processor count, Resource
+  Manager, and ORDS pool sizing. There are no upstream-published numeric request rates.
+description: Oracle Database 19c throughput is operator-controlled via Database Resource Manager, session
+  resource limits, and (for REST) ORDS pool configuration. Cloud-managed 19c (Autonomous DB, Base Database
+  Service) inherits OCI throttling — 429 / 503 with Retry-After.
+sources:
+  - https://docs.oracle.com/en/database/oracle/oracle-database/19/
+  - https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/
 responseCodes:
   throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
+  unavailable: 503
+  conflict: 409
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Oracle REST Data Services (ORDS)
-      - Oracle Database SODA (Simple Oracle Document Access)
-      - Oracle SQL Developer Web
-      - Oracle Database API for MongoDB
-      - Oracle Database JSON Collections API
-      - Oracle Database REST API for AutoML
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Oracle REST Data Services (ORDS)
-      - Oracle Database SODA (Simple Oracle Document Access)
-      - Oracle SQL Developer Web
-      - Oracle Database API for MongoDB
-      - Oracle Database JSON Collections API
-      - Oracle Database REST API for AutoML
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Oracle REST Data Services (ORDS)
-      - Oracle Database SODA (Simple Oracle Document Access)
-      - Oracle SQL Developer Web
-      - Oracle Database API for MongoDB
-      - Oracle Database JSON Collections API
-      - Oracle Database REST API for AutoML
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Oracle REST Data Services (ORDS)
-      - Oracle Database SODA (Simple Oracle Document Access)
-      - Oracle SQL Developer Web
-      - Oracle Database API for MongoDB
-      - Oracle Database JSON Collections API
-      - Oracle Database REST API for AutoML
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Oracle REST Data Services (ORDS)
-      - Oracle Database SODA (Simple Oracle Document Access)
-      - Oracle SQL Developer Web
-      - Oracle Database API for MongoDB
-      - Oracle Database JSON Collections API
-      - Oracle Database REST API for AutoML
+  - name: Database Resource Manager
+    scope: database/consumer-group
+    metric: varies
+    limit: configured per consumer group
+  - name: Session resource limits
+    scope: session
+    metric: varies
+    limit: SESSIONS_PER_USER, CPU_PER_SESSION (operator-set)
+  - name: ORDS connection pool
+    scope: ORDS instance
+    metric: concurrent_connections
+    limit: jdbc.MaxLimit (operator-set)
+  - name: Autonomous Database 19c
+    scope: instance
+    metric: ECPU
+    limit: instance-shape-bounded
 policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+  - name: Resource Manager
+    description: Primary throughput-shaping mechanism — allocate CPU / IO / parallelism per consumer
+      group.
+  - name: ORDS tuning
+    description: Size connection pool to match expected concurrency for REST endpoints.
+  - name: Backoff
+    description: Honor 429 / 503 from cloud services; ORA- errors handled with application-level retry.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
