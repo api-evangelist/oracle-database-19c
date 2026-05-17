@@ -29,7 +29,7 @@ apis:
     properties:
       - type: Documentation
         url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/19.2/
-      - type: API Reference
+      - type: APIReference
         url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/19.2/orrst/
       - type: Authentication
         url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/19.2/orddg/developing-REST-applications.html
@@ -80,7 +80,7 @@ apis:
     properties:
       - type: Documentation
         url: https://docs.oracle.com/en/database/oracle/sql-developer-web/
-      - type: Getting Started
+      - type: GettingStarted
         url: https://docs.oracle.com/en/database/oracle/sql-developer-web/sdwad/
   - name: Oracle Database API for MongoDB
     description: >-
@@ -130,7 +130,7 @@ apis:
     properties:
       - type: Documentation
         url: https://docs.oracle.com/en/database/oracle/machine-learning/oml4sql/19/
-      - type: API Reference
+      - type: APIReference
         url: https://docs.oracle.com/en/cloud/paas/autonomous-database/omlug/rest-endpoints.html
 maintainers:
   - FN: Kin Lane
