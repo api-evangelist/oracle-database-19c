@@ -1,0 +1,270 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Oracle Database 19c - Oracle REST Data Services (ORDS) API — AutoREST
+  description: 'Oracle Database 19c - Oracle REST Data Services (ORDS) API — AutoREST. 5 operations. Lead operation: Query
+    an AutoREST-enabled table or view. Self-contained Naftiko capability covering one Oracle Database 19c business surface.'
+  tags:
+  - Oracle Database 19c
+  - AutoREST
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ORACLE_DATABASE_19C_API_KEY: ORACLE_DATABASE_19C_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: ords-autorest
+    baseUri: https://{host}:{port}/ords
+    description: Oracle Database 19c - Oracle REST Data Services (ORDS) API — AutoREST business capability. Self-contained,
+      no shared references.
+    resources:
+    - name: schema-table
+      path: /{schema}/{table}/
+      operations:
+      - name: querytable
+        method: GET
+        description: Query an AutoREST-enabled table or view
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: table
+          in: path
+          type: string
+          required: true
+        - name: q
+          in: query
+          type: string
+        - name: limit
+          in: query
+          type: integer
+        - name: offset
+          in: query
+          type: integer
+      - name: insertrow
+        method: POST
+        description: Insert a row
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: table
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: schema-table-id
+      path: /{schema}/{table}/{id}
+      operations:
+      - name: getrow
+        method: GET
+        description: Get a row by primary key
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: table
+          in: path
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: string
+          required: true
+      - name: updaterow
+        method: PUT
+        description: Update a row by primary key
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: table
+          in: path
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleterow
+        method: DELETE
+        description: Delete a row
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: table
+          in: path
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ORACLE_DATABASE_19C_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: ords-autorest-rest
+    port: 8080
+    description: REST adapter for Oracle Database 19c - Oracle REST Data Services (ORDS) API — AutoREST. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/{schema}/{table}
+      name: schema-table
+      description: REST surface for schema-table.
+      operations:
+      - method: GET
+        name: querytable
+        description: Query an AutoREST-enabled table or view
+        call: ords-autorest.querytable
+        with:
+          table: rest.table
+          q: rest.q
+          limit: rest.limit
+          offset: rest.offset
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: insertrow
+        description: Insert a row
+        call: ords-autorest.insertrow
+        with:
+          table: rest.table
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{schema}/{table}/{id}
+      name: schema-table-id
+      description: REST surface for schema-table-id.
+      operations:
+      - method: GET
+        name: getrow
+        description: Get a row by primary key
+        call: ords-autorest.getrow
+        with:
+          table: rest.table
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updaterow
+        description: Update a row by primary key
+        call: ords-autorest.updaterow
+        with:
+          table: rest.table
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleterow
+        description: Delete a row
+        call: ords-autorest.deleterow
+        with:
+          table: rest.table
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: ords-autorest-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Oracle Database 19c - Oracle REST Data Services (ORDS) API — AutoREST. One tool per consumed
+      operation, routed inline through this capability's consumes block.
+    tools:
+    - name: query-autorest-enabled-table-view
+      description: Query an AutoREST-enabled table or view
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ords-autorest.querytable
+      with:
+        table: tools.table
+        q: tools.q
+        limit: tools.limit
+        offset: tools.offset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: insert-row
+      description: Insert a row
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: ords-autorest.insertrow
+      with:
+        table: tools.table
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-row-primary-key
+      description: Get a row by primary key
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ords-autorest.getrow
+      with:
+        table: tools.table
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-row-primary-key
+      description: Update a row by primary key
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: ords-autorest.updaterow
+      with:
+        table: tools.table
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-row
+      description: Delete a row
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: ords-autorest.deleterow
+      with:
+        table: tools.table
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
