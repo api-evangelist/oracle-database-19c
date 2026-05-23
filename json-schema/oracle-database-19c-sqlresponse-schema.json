@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SqlResponse",
+  "title": "SqlResponse",
+  "type": "object",
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "statementId": {
+            "type": "integer"
+          },
+          "statementType": {
+            "type": "string"
+          },
+          "statementText": {
+            "type": "string"
+          },
+          "resultSet": {
+            "type": "object",
+            "properties": {
+              "metadata": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "columnName": {
+                      "type": "string"
+                    },
+                    "jdbcType": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              },
+              "hasMore": {
+                "type": "boolean"
+              },
+              "count": {
+                "type": "integer"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

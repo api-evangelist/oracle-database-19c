@@ -1,0 +1,15 @@
+name: Oracle Database 19c Domain Vocabulary
+provider: Oracle Database 19c
+providerId: oracle-database-19c
+description: Tag-derived vocabulary for the Oracle Database 19c API surface; sourced from openapi/ tags.
+terms:
+- term: SQL
+  description: Ad-hoc SQL execution
+- term: AutoREST
+  description: AutoREST-enabled tables and views
+- term: SODA
+  description: Simple Oracle Document Access REST API
+- term: Metadata
+  description: Schema and metadata catalog
+- term: PL/SQL
+  description: PL/SQL handler endpoints

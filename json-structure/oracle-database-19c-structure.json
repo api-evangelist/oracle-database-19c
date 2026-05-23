@@ -1,0 +1,144 @@
+{
+  "provider": "Oracle Database 19c",
+  "providerId": "oracle-database-19c",
+  "kind": "json-structure",
+  "description": "Structural overview of the Oracle Database 19c API surface; extracted from openapi/.",
+  "schemaCount": 4,
+  "operationCount": 12,
+  "schemas": [
+    {
+      "name": "SqlResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "AutoRestResultSet",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "SodaListing",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "MetadataCatalog",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "POST",
+      "path": "/{schema}/_/sql",
+      "operationId": "executeSql",
+      "summary": "Execute SQL",
+      "tags": [
+        "SQL"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/{schema}/metadata-catalog/",
+      "operationId": "getMetadataCatalog",
+      "summary": "List the schema's REST endpoints catalog",
+      "tags": [
+        "Metadata"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/{schema}/{table}/",
+      "operationId": "queryTable",
+      "summary": "Query an AutoREST-enabled table or view",
+      "tags": [
+        "AutoREST"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/{schema}/{table}/",
+      "operationId": "insertRow",
+      "summary": "Insert a row",
+      "tags": [
+        "AutoREST"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/{schema}/{table}/{id}",
+      "operationId": "getRow",
+      "summary": "Get a row by primary key",
+      "tags": [
+        "AutoREST"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/{schema}/{table}/{id}",
+      "operationId": "updateRow",
+      "summary": "Update a row by primary key",
+      "tags": [
+        "AutoREST"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/{schema}/{table}/{id}",
+      "operationId": "deleteRow",
+      "summary": "Delete a row",
+      "tags": [
+        "AutoREST"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/{schema}/soda/latest/{collection}",
+      "operationId": "listSodaDocuments",
+      "summary": "List documents in a SODA collection",
+      "tags": [
+        "SODA"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/{schema}/soda/latest/{collection}",
+      "operationId": "insertSodaDocument",
+      "summary": "Insert a document into a SODA collection",
+      "tags": [
+        "SODA"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/{schema}/soda/latest/{collection}/{key}",
+      "operationId": "getSodaDocument",
+      "summary": "Get a SODA document by key",
+      "tags": [
+        "SODA"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/{schema}/soda/latest/{collection}/{key}",
+      "operationId": "replaceSodaDocument",
+      "summary": "Replace a SODA document",
+      "tags": [
+        "SODA"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/{schema}/soda/latest/{collection}/{key}",
+      "operationId": "deleteSodaDocument",
+      "summary": "Delete a SODA document",
+      "tags": [
+        "SODA"
+      ]
+    }
+  ]
+}
