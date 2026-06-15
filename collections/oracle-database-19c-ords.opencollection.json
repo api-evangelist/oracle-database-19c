@@ -1,0 +1,402 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Database 19c - Oracle REST Data Services (ORDS) API",
+    "version": "19.2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SQL",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Execute SQL",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/ords/:schema/_/sql",
+            "params": [
+              {
+                "name": "schema",
+                "value": "",
+                "type": "path",
+                "description": "ORDS-enabled schema alias"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Execute SQL"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Metadata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List the schema's REST endpoints catalog",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/:schema/metadata-catalog/",
+            "params": [
+              {
+                "name": "schema",
+                "value": "",
+                "type": "path",
+                "description": "ORDS-enabled schema alias"
+              }
+            ]
+          },
+          "docs": "List the schema's REST endpoints catalog"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "AutoREST",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query an AutoREST-enabled table or view",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/:schema/:table/",
+            "params": [
+              {
+                "name": "schema",
+                "value": "",
+                "type": "path",
+                "description": "ORDS-enabled schema alias"
+              },
+              {
+                "name": "table",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Query an AutoREST-enabled table or view"
+        },
+        {
+          "info": {
+            "name": "Insert a row",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/ords/:schema/:table/",
+            "params": [
+              {
+                "name": "schema",
+                "value": "",
+                "type": "path",
+                "description": "ORDS-enabled schema alias"
+              },
+              {
+                "name": "table",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Insert a row"
+        },
+        {
+          "info": {
+            "name": "Get a row by primary key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/:schema/:table/:id",
+            "params": [
+              {
+                "name": "schema",
+                "value": "",
+                "type": "path",
+                "description": "ORDS-enabled schema alias"
+              },
+              {
+                "name": "table",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a row by primary key"
+        },
+        {
+          "info": {
+            "name": "Update a row by primary key",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}:{port}/ords/:schema/:table/:id",
+            "params": [
+              {
+                "name": "schema",
+                "value": "",
+                "type": "path",
+                "description": "ORDS-enabled schema alias"
+              },
+              {
+                "name": "table",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a row by primary key"
+        },
+        {
+          "info": {
+            "name": "Delete a row",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/ords/:schema/:table/:id",
+            "params": [
+              {
+                "name": "schema",
+                "value": "",
+                "type": "path",
+                "description": "ORDS-enabled schema alias"
+              },
+              {
+                "name": "table",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a row"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "SODA",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List documents in a SODA collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/:schema/soda/latest/:collection",
+            "params": [
+              {
+                "name": "schema",
+                "value": "",
+                "type": "path",
+                "description": "ORDS-enabled schema alias"
+              },
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List documents in a SODA collection"
+        },
+        {
+          "info": {
+            "name": "Insert a document into a SODA collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/ords/:schema/soda/latest/:collection",
+            "params": [
+              {
+                "name": "schema",
+                "value": "",
+                "type": "path",
+                "description": "ORDS-enabled schema alias"
+              },
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Insert a document into a SODA collection"
+        },
+        {
+          "info": {
+            "name": "Get a SODA document by key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/:schema/soda/latest/:collection/:key",
+            "params": [
+              {
+                "name": "schema",
+                "value": "",
+                "type": "path",
+                "description": "ORDS-enabled schema alias"
+              },
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a SODA document by key"
+        },
+        {
+          "info": {
+            "name": "Replace a SODA document",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}:{port}/ords/:schema/soda/latest/:collection/:key",
+            "params": [
+              {
+                "name": "schema",
+                "value": "",
+                "type": "path",
+                "description": "ORDS-enabled schema alias"
+              },
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace a SODA document"
+        },
+        {
+          "info": {
+            "name": "Delete a SODA document",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/ords/:schema/soda/latest/:collection/:key",
+            "params": [
+              {
+                "name": "schema",
+                "value": "",
+                "type": "path",
+                "description": "ORDS-enabled schema alias"
+              },
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a SODA document"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
