@@ -92,7 +92,7 @@ apis:
     properties:
       - type: Documentation
         url: https://docs.oracle.com/en/database/oracle/mongodb-api/
-      - type: Quick Start
+      - type: GettingStarted
         url: https://www.oracle.com/database/mongodb-api/quickstart.html
   - name: Oracle Database JSON Collections API
     description: RESTful API for managing JSON document collections with CRUD operations.
