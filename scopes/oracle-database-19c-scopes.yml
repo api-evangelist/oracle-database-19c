@@ -1,0 +1,16 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/oracle-database-19c-ords-openapi.yml
+docs: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/19.4/aelig/OAUTH-reference.html
+note: >-
+  ORDS OAuth 2.0 does not use named scopes; access for OAuth clients is
+  controlled through ORDS privileges (p_privilege_names) and roles granted to
+  the client, per the OAUTH PL/SQL Package Reference
+  (https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/19.4/aelig/OAUTH-reference.html).
+schemes:
+- name: oauth2
+  source: openapi/oracle-database-19c-ords-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://{host}:{port}/ords/{schema}/oauth/token
+scopes: []
