@@ -1,0 +1,23 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/oracle-database-19c-ords-openapi.yml
+summary:
+  types:
+  - http
+  - oauth2
+  oauth2_flows:
+  - clientCredentials
+schemes:
+- name: basicAuth
+  type: http
+  scheme: basic
+  sources:
+  - openapi/oracle-database-19c-ords-openapi.yml
+- name: oauth2
+  type: oauth2
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://{host}:{port}/ords/{schema}/oauth/token
+    scopes: 0
+  sources:
+  - openapi/oracle-database-19c-ords-openapi.yml

@@ -142,6 +142,10 @@ include:
   - name: Oracle Cloud Infrastructure
     url: https://cloud.oracle.com/
 common:
+  - type: DomainSecurity
+    url: security/oracle-database-19c-domain-security.yml
+  - type: Authentication
+    url: authentication/oracle-database-19c-authentication.yml
   - type: OAuthScopes
     url: scopes/oracle-database-19c-scopes.yml
   - type: GitHubOrganization
