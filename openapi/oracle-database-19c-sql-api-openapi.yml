@@ -1,0 +1,119 @@
+openapi: 3.1.0
+info:
+  title: Oracle Database 19c - Oracle REST Data Services (ORDS) AutoREST SQL API
+  description: Oracle REST Data Services (ORDS) on Oracle Database 19c. Exposes RESTful endpoints for SQL queries, PL/SQL execution, schema management, AutoREST table access, SODA document collections, and the data dictionary catalog.
+  version: 19.2.0
+  contact:
+    name: Oracle Support
+    url: https://support.oracle.com
+  license:
+    name: Oracle Technology Network License
+    url: https://www.oracle.com/downloads/licenses/standard-license.html
+servers:
+- url: https://{host}:{port}/ords
+  description: ORDS server
+  variables:
+    host:
+      default: localhost
+    port:
+      default: '8443'
+security:
+- basicAuth: []
+- oauth2: []
+tags:
+- name: SQL
+  description: Ad-hoc SQL execution
+paths:
+  /{schema}/_/sql:
+    post:
+      tags:
+      - SQL
+      summary: Execute SQL
+      operationId: executeSql
+      parameters:
+      - $ref: '#/components/parameters/Schema'
+      requestBody:
+        required: true
+        content:
+          application/sql:
+            schema:
+              type: string
+          application/json:
+            schema:
+              type: object
+              properties:
+                statementText:
+                  type: string
+                binds:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      value: {}
+      responses:
+        '200':
+          description: SQL execution result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SqlResponse'
+components:
+  parameters:
+    Schema:
+      name: schema
+      in: path
+      required: true
+      schema:
+        type: string
+      description: ORDS-enabled schema alias
+  schemas:
+    SqlResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              statementId:
+                type: integer
+              statementType:
+                type: string
+              statementText:
+                type: string
+              resultSet:
+                type: object
+                properties:
+                  metadata:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        columnName:
+                          type: string
+                        jdbcType:
+                          type: integer
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      additionalProperties: true
+                  hasMore:
+                    type: boolean
+                  count:
+                    type: integer
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://{host}:{port}/ords/{schema}/oauth/token
+          scopes: {}
+externalDocs:
+  description: ORDS 19.2 Documentation
+  url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/19.2/

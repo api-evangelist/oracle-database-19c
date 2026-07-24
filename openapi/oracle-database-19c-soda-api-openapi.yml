@@ -1,0 +1,203 @@
+openapi: 3.1.0
+info:
+  title: Oracle Database 19c - Oracle REST Data Services (ORDS) AutoREST SODA API
+  description: Oracle REST Data Services (ORDS) on Oracle Database 19c. Exposes RESTful endpoints for SQL queries, PL/SQL execution, schema management, AutoREST table access, SODA document collections, and the data dictionary catalog.
+  version: 19.2.0
+  contact:
+    name: Oracle Support
+    url: https://support.oracle.com
+  license:
+    name: Oracle Technology Network License
+    url: https://www.oracle.com/downloads/licenses/standard-license.html
+servers:
+- url: https://{host}:{port}/ords
+  description: ORDS server
+  variables:
+    host:
+      default: localhost
+    port:
+      default: '8443'
+security:
+- basicAuth: []
+- oauth2: []
+tags:
+- name: SODA
+  description: Simple Oracle Document Access REST API
+paths:
+  /{schema}/soda/latest/{collection}:
+    get:
+      tags:
+      - SODA
+      summary: List documents in a SODA collection
+      operationId: listSodaDocuments
+      parameters:
+      - $ref: '#/components/parameters/Schema'
+      - name: collection
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: limit
+        in: query
+        schema:
+          type: integer
+      - name: offset
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Documents
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SodaListing'
+    post:
+      tags:
+      - SODA
+      summary: Insert a document into a SODA collection
+      operationId: insertSodaDocument
+      parameters:
+      - $ref: '#/components/parameters/Schema'
+      - name: collection
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '201':
+          description: Document created
+  /{schema}/soda/latest/{collection}/{key}:
+    get:
+      tags:
+      - SODA
+      summary: Get a SODA document by key
+      operationId: getSodaDocument
+      parameters:
+      - $ref: '#/components/parameters/Schema'
+      - name: collection
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: key
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Document
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+    put:
+      tags:
+      - SODA
+      summary: Replace a SODA document
+      operationId: replaceSodaDocument
+      parameters:
+      - $ref: '#/components/parameters/Schema'
+      - name: collection
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: key
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Replaced
+    delete:
+      tags:
+      - SODA
+      summary: Delete a SODA document
+      operationId: deleteSodaDocument
+      parameters:
+      - $ref: '#/components/parameters/Schema'
+      - name: collection
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: key
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Deleted
+components:
+  schemas:
+    SodaListing:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              etag:
+                type: string
+              lastModified:
+                type: string
+                format: date-time
+              created:
+                type: string
+                format: date-time
+              mediaType:
+                type: string
+              value:
+                type: object
+                additionalProperties: true
+        hasMore:
+          type: boolean
+        count:
+          type: integer
+        offset:
+          type: integer
+        limit:
+          type: integer
+  parameters:
+    Schema:
+      name: schema
+      in: path
+      required: true
+      schema:
+        type: string
+      description: ORDS-enabled schema alias
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://{host}:{port}/ords/{schema}/oauth/token
+          scopes: {}
+externalDocs:
+  description: ORDS 19.2 Documentation
+  url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/19.2/

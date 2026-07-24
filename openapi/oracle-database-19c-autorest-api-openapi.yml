@@ -1,0 +1,204 @@
+openapi: 3.1.0
+info:
+  title: Oracle Database 19c - Oracle REST Data Services (ORDS) AutoREST API
+  description: Oracle REST Data Services (ORDS) on Oracle Database 19c. Exposes RESTful endpoints for SQL queries, PL/SQL execution, schema management, AutoREST table access, SODA document collections, and the data dictionary catalog.
+  version: 19.2.0
+  contact:
+    name: Oracle Support
+    url: https://support.oracle.com
+  license:
+    name: Oracle Technology Network License
+    url: https://www.oracle.com/downloads/licenses/standard-license.html
+servers:
+- url: https://{host}:{port}/ords
+  description: ORDS server
+  variables:
+    host:
+      default: localhost
+    port:
+      default: '8443'
+security:
+- basicAuth: []
+- oauth2: []
+tags:
+- name: AutoREST
+  description: AutoREST-enabled tables and views
+paths:
+  /{schema}/{table}/:
+    get:
+      tags:
+      - AutoREST
+      summary: Query an AutoREST-enabled table or view
+      operationId: queryTable
+      parameters:
+      - $ref: '#/components/parameters/Schema'
+      - name: table
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: q
+        in: query
+        schema:
+          type: string
+          description: FilterObject JSON
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 25
+      - name: offset
+        in: query
+        schema:
+          type: integer
+          default: 0
+      responses:
+        '200':
+          description: Result set
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutoRestResultSet'
+    post:
+      tags:
+      - AutoREST
+      summary: Insert a row
+      operationId: insertRow
+      parameters:
+      - $ref: '#/components/parameters/Schema'
+      - name: table
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '201':
+          description: Row inserted
+  /{schema}/{table}/{id}:
+    get:
+      tags:
+      - AutoREST
+      summary: Get a row by primary key
+      operationId: getRow
+      parameters:
+      - $ref: '#/components/parameters/Schema'
+      - name: table
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Row
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+    put:
+      tags:
+      - AutoREST
+      summary: Update a row by primary key
+      operationId: updateRow
+      parameters:
+      - $ref: '#/components/parameters/Schema'
+      - name: table
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Row updated
+    delete:
+      tags:
+      - AutoREST
+      summary: Delete a row
+      operationId: deleteRow
+      parameters:
+      - $ref: '#/components/parameters/Schema'
+      - name: table
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Row deleted
+components:
+  schemas:
+    AutoRestResultSet:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        hasMore:
+          type: boolean
+        limit:
+          type: integer
+        offset:
+          type: integer
+        count:
+          type: integer
+        links:
+          type: array
+          items:
+            type: object
+            properties:
+              rel:
+                type: string
+              href:
+                type: string
+  parameters:
+    Schema:
+      name: schema
+      in: path
+      required: true
+      schema:
+        type: string
+      description: ORDS-enabled schema alias
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://{host}:{port}/ords/{schema}/oauth/token
+          scopes: {}
+externalDocs:
+  description: ORDS 19.2 Documentation
+  url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/19.2/
