@@ -1,0 +1,20 @@
+{
+  "provider": "oracle-database-19c",
+  "sources": [
+    "oracle-database-19c-autorest-api-openapi.yml",
+    "oracle-database-19c-metadata-api-openapi.yml",
+    "oracle-database-19c-soda-api-openapi.yml",
+    "oracle-database-19c-sql-api-openapi.yml"
+  ],
+  "outputs": [
+    "oracle-database-19c-autorest-api-openapi.yml",
+    "oracle-database-19c-metadata-api-openapi.yml",
+    "oracle-database-19c-soda-api-openapi.yml",
+    "oracle-database-19c-sql-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

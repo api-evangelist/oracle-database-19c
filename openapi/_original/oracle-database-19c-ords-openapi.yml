@@ -1,0 +1,388 @@
+openapi: 3.1.0
+info:
+  title: Oracle Database 19c - Oracle REST Data Services (ORDS) API
+  description: >-
+    Oracle REST Data Services (ORDS) on Oracle Database 19c. Exposes RESTful
+    endpoints for SQL queries, PL/SQL execution, schema management, AutoREST
+    table access, SODA document collections, and the data dictionary catalog.
+  version: 19.2.0
+  contact:
+    name: Oracle Support
+    url: https://support.oracle.com
+  license:
+    name: Oracle Technology Network License
+    url: https://www.oracle.com/downloads/licenses/standard-license.html
+externalDocs:
+  description: ORDS 19.2 Documentation
+  url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/19.2/
+servers:
+  - url: https://{host}:{port}/ords
+    description: ORDS server
+    variables:
+      host:
+        default: localhost
+      port:
+        default: '8443'
+security:
+  - basicAuth: []
+  - oauth2: []
+tags:
+  - name: SQL
+    description: Ad-hoc SQL execution
+  - name: AutoREST
+    description: AutoREST-enabled tables and views
+  - name: SODA
+    description: Simple Oracle Document Access REST API
+  - name: Metadata
+    description: Schema and metadata catalog
+  - name: PL/SQL
+    description: PL/SQL handler endpoints
+paths:
+  /{schema}/_/sql:
+    post:
+      tags: [SQL]
+      summary: Execute SQL
+      operationId: executeSql
+      parameters:
+        - $ref: '#/components/parameters/Schema'
+      requestBody:
+        required: true
+        content:
+          application/sql:
+            schema: { type: string }
+          application/json:
+            schema:
+              type: object
+              properties:
+                statementText: { type: string }
+                binds:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name: { type: string }
+                      value: {}
+      responses:
+        '200':
+          description: SQL execution result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SqlResponse'
+  /{schema}/metadata-catalog/:
+    get:
+      tags: [Metadata]
+      summary: List the schema's REST endpoints catalog
+      operationId: getMetadataCatalog
+      parameters:
+        - $ref: '#/components/parameters/Schema'
+      responses:
+        '200':
+          description: Catalog of available REST endpoints
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadataCatalog'
+  /{schema}/{table}/:
+    get:
+      tags: [AutoREST]
+      summary: Query an AutoREST-enabled table or view
+      operationId: queryTable
+      parameters:
+        - $ref: '#/components/parameters/Schema'
+        - name: table
+          in: path
+          required: true
+          schema: { type: string }
+        - name: q
+          in: query
+          schema: { type: string, description: 'FilterObject JSON' }
+        - name: limit
+          in: query
+          schema: { type: integer, default: 25 }
+        - name: offset
+          in: query
+          schema: { type: integer, default: 0 }
+      responses:
+        '200':
+          description: Result set
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutoRestResultSet'
+    post:
+      tags: [AutoREST]
+      summary: Insert a row
+      operationId: insertRow
+      parameters:
+        - $ref: '#/components/parameters/Schema'
+        - name: table
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { type: object, additionalProperties: true }
+      responses:
+        '201':
+          description: Row inserted
+  /{schema}/{table}/{id}:
+    get:
+      tags: [AutoREST]
+      summary: Get a row by primary key
+      operationId: getRow
+      parameters:
+        - $ref: '#/components/parameters/Schema'
+        - name: table
+          in: path
+          required: true
+          schema: { type: string }
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Row
+          content:
+            application/json:
+              schema: { type: object, additionalProperties: true }
+    put:
+      tags: [AutoREST]
+      summary: Update a row by primary key
+      operationId: updateRow
+      parameters:
+        - $ref: '#/components/parameters/Schema'
+        - name: table
+          in: path
+          required: true
+          schema: { type: string }
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { type: object, additionalProperties: true }
+      responses:
+        '200':
+          description: Row updated
+    delete:
+      tags: [AutoREST]
+      summary: Delete a row
+      operationId: deleteRow
+      parameters:
+        - $ref: '#/components/parameters/Schema'
+        - name: table
+          in: path
+          required: true
+          schema: { type: string }
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '204':
+          description: Row deleted
+  /{schema}/soda/latest/{collection}:
+    get:
+      tags: [SODA]
+      summary: List documents in a SODA collection
+      operationId: listSodaDocuments
+      parameters:
+        - $ref: '#/components/parameters/Schema'
+        - name: collection
+          in: path
+          required: true
+          schema: { type: string }
+        - name: limit
+          in: query
+          schema: { type: integer }
+        - name: offset
+          in: query
+          schema: { type: integer }
+      responses:
+        '200':
+          description: Documents
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SodaListing'
+    post:
+      tags: [SODA]
+      summary: Insert a document into a SODA collection
+      operationId: insertSodaDocument
+      parameters:
+        - $ref: '#/components/parameters/Schema'
+        - name: collection
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { type: object, additionalProperties: true }
+      responses:
+        '201':
+          description: Document created
+  /{schema}/soda/latest/{collection}/{key}:
+    get:
+      tags: [SODA]
+      summary: Get a SODA document by key
+      operationId: getSodaDocument
+      parameters:
+        - $ref: '#/components/parameters/Schema'
+        - name: collection
+          in: path
+          required: true
+          schema: { type: string }
+        - name: key
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Document
+          content:
+            application/json:
+              schema: { type: object, additionalProperties: true }
+    put:
+      tags: [SODA]
+      summary: Replace a SODA document
+      operationId: replaceSodaDocument
+      parameters:
+        - $ref: '#/components/parameters/Schema'
+        - name: collection
+          in: path
+          required: true
+          schema: { type: string }
+        - name: key
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { type: object, additionalProperties: true }
+      responses:
+        '200':
+          description: Replaced
+    delete:
+      tags: [SODA]
+      summary: Delete a SODA document
+      operationId: deleteSodaDocument
+      parameters:
+        - $ref: '#/components/parameters/Schema'
+        - name: collection
+          in: path
+          required: true
+          schema: { type: string }
+        - name: key
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '204':
+          description: Deleted
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://{host}:{port}/ords/{schema}/oauth/token
+          scopes: {}
+  parameters:
+    Schema:
+      name: schema
+      in: path
+      required: true
+      schema: { type: string }
+      description: ORDS-enabled schema alias
+  schemas:
+    SqlResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              statementId: { type: integer }
+              statementType: { type: string }
+              statementText: { type: string }
+              resultSet:
+                type: object
+                properties:
+                  metadata:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        columnName: { type: string }
+                        jdbcType: { type: integer }
+                  items:
+                    type: array
+                    items: { type: object, additionalProperties: true }
+                  hasMore: { type: boolean }
+                  count: { type: integer }
+    AutoRestResultSet:
+      type: object
+      properties:
+        items:
+          type: array
+          items: { type: object, additionalProperties: true }
+        hasMore: { type: boolean }
+        limit: { type: integer }
+        offset: { type: integer }
+        count: { type: integer }
+        links:
+          type: array
+          items:
+            type: object
+            properties:
+              rel: { type: string }
+              href: { type: string }
+    SodaListing:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              id: { type: string }
+              etag: { type: string }
+              lastModified: { type: string, format: date-time }
+              created: { type: string, format: date-time }
+              mediaType: { type: string }
+              value: { type: object, additionalProperties: true }
+        hasMore: { type: boolean }
+        count: { type: integer }
+        offset: { type: integer }
+        limit: { type: integer }
+    MetadataCatalog:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              name: { type: string }
+              links:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    rel: { type: string }
+                    href: { type: string }
