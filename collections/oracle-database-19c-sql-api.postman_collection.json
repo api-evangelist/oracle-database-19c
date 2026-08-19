@@ -1,0 +1,215 @@
+{
+  "item": [
+    {
+      "id": "5d2629ad-ee88-4a12-98e8-b11fb2e0d73c",
+      "name": "SQL",
+      "description": {
+        "content": "Ad-hoc SQL execution",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dcaa9150-75db-40e3-8843-848336493909",
+          "name": "Execute SQL",
+          "request": {
+            "name": "Execute SQL",
+            "description": {},
+            "url": {
+              "path": [
+                ":schema",
+                "_",
+                "sql"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "schema",
+                  "description": "(Required) ORDS-enabled schema alias"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"statementText\": \"<string>\",\n  \"binds\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "14da6bc2-f2ae-4d59-8e5c-0169820f8cb5",
+              "name": "SQL execution result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":schema",
+                    "_",
+                    "sql"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "schema",
+                      "description": "(Required) ORDS-enabled schema alias"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"statementText\": \"<string>\",\n  \"binds\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"statementId\": 6831,\n      \"statementType\": \"string\",\n      \"statementText\": \"string\",\n      \"resultSet\": {\n        \"metadata\": [\n          {\n            \"columnName\": \"string\",\n            \"jdbcType\": 7420\n          },\n          {\n            \"columnName\": \"string\",\n            \"jdbcType\": 7606\n          }\n        ],\n        \"items\": [\n          {\n            \"key_0\": \"string\"\n          },\n          {\n            \"key_0\": false\n          }\n        ],\n        \"hasMore\": true,\n        \"count\": 9457\n      }\n    },\n    {\n      \"statementId\": 7045,\n      \"statementType\": \"string\",\n      \"statementText\": \"string\",\n      \"resultSet\": {\n        \"metadata\": [\n          {\n            \"columnName\": \"string\",\n            \"jdbcType\": 6967\n          },\n          {\n            \"columnName\": \"string\",\n            \"jdbcType\": 7064\n          }\n        ],\n        \"items\": [\n          {\n            \"key_0\": false,\n            \"key_1\": \"string\",\n            \"key_2\": true\n          },\n          {\n            \"key_0\": 524.7555017832983\n          }\n        ],\n        \"hasMore\": false,\n        \"count\": 4748\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "localhost",
+      "key": "host"
+    },
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "8443",
+      "key": "port"
+    },
+    {
+      "type": "string",
+      "value": "https://{{host}}:{{port}}/ords",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1fdb75cc-a421-49c5-b19f-d2b599157d0c",
+    "name": "Oracle Database 19c - Oracle REST Data Services (ORDS) AutoREST SQL API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Oracle REST Data Services (ORDS) on Oracle Database 19c. Exposes RESTful endpoints for SQL queries, PL/SQL execution, schema management, AutoREST table access, SODA document collections, and the data dictionary catalog.\n\nContact Support:\n Name: Oracle Support",
+      "type": "text/plain"
+    }
+  }
+}

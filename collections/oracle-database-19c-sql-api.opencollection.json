@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Database 19c - Oracle REST Data Services (ORDS) AutoREST SQL API",
+    "version": "19.2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SQL",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Execute SQL",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/ords/:schema/_/sql",
+            "params": [
+              {
+                "name": "schema",
+                "value": "",
+                "type": "path",
+                "description": "ORDS-enabled schema alias"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Execute SQL"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

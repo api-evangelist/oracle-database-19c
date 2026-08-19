@@ -1,0 +1,183 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Database 19c - Oracle REST Data Services (ORDS) AutoREST API",
+    "version": "19.2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "AutoREST",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query an AutoREST-enabled table or view",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/:schema/:table/",
+            "params": [
+              {
+                "name": "schema",
+                "value": "",
+                "type": "path",
+                "description": "ORDS-enabled schema alias"
+              },
+              {
+                "name": "table",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Query an AutoREST-enabled table or view"
+        },
+        {
+          "info": {
+            "name": "Insert a row",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/ords/:schema/:table/",
+            "params": [
+              {
+                "name": "schema",
+                "value": "",
+                "type": "path",
+                "description": "ORDS-enabled schema alias"
+              },
+              {
+                "name": "table",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Insert a row"
+        },
+        {
+          "info": {
+            "name": "Get a row by primary key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/:schema/:table/:id",
+            "params": [
+              {
+                "name": "schema",
+                "value": "",
+                "type": "path",
+                "description": "ORDS-enabled schema alias"
+              },
+              {
+                "name": "table",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a row by primary key"
+        },
+        {
+          "info": {
+            "name": "Update a row by primary key",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}:{port}/ords/:schema/:table/:id",
+            "params": [
+              {
+                "name": "schema",
+                "value": "",
+                "type": "path",
+                "description": "ORDS-enabled schema alias"
+              },
+              {
+                "name": "table",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a row by primary key"
+        },
+        {
+          "info": {
+            "name": "Delete a row",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/ords/:schema/:table/:id",
+            "params": [
+              {
+                "name": "schema",
+                "value": "",
+                "type": "path",
+                "description": "ORDS-enabled schema alias"
+              },
+              {
+                "name": "table",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a row"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

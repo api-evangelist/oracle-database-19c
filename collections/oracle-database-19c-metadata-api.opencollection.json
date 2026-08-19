@@ -1,0 +1,44 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Database 19c - Oracle REST Data Services (ORDS) AutoREST Metadata API",
+    "version": "19.2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Metadata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List the schema's REST endpoints catalog",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/:schema/metadata-catalog/",
+            "params": [
+              {
+                "name": "schema",
+                "value": "",
+                "type": "path",
+                "description": "ORDS-enabled schema alias"
+              }
+            ]
+          },
+          "docs": "List the schema's REST endpoints catalog"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
