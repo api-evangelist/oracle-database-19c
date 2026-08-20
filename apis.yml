@@ -32,6 +32,11 @@ apis:
   humanURL: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/
   baseURL: https://example.oracle.com:8443/ords/
   tags:
+  - Document Store
+  - JSON
+  - NoSQL
+  - Oracle
+  tags_raw:
   - Document-Store
   - Json
   - Nosql
@@ -60,6 +65,11 @@ apis:
   tags:
   - Administration
   - Development
+  - SQL
+  - Web-Interface
+  tags_raw:
+  - Administration
+  - Development
   - Sql
   - Web-Interface
   properties:
@@ -73,6 +83,11 @@ apis:
   humanURL: https://www.oracle.com/database/mongodb-api/
   baseURL: mongodb://example.oracle.com:27017/
   tags:
+  - Compatibility
+  - Document Store
+  - MongoDB
+  - NoSQL
+  tags_raw:
   - Compatibility
   - Document-Store
   - Mongodb
@@ -88,6 +103,11 @@ apis:
   humanURL: https://docs.oracle.com/en/database/oracle/oracle-database/19/adjsn/
   baseURL: https://example.oracle.com:8443/ords/
   tags:
+  - Collection
+  - Document-Api
+  - JSON
+  - REST
+  tags_raw:
   - Collections
   - Document-Api
   - Json
@@ -105,6 +125,11 @@ apis:
   humanURL: https://docs.oracle.com/en/database/oracle/machine-learning/
   baseURL: https://example.oracle.com:8443/omlmod/
   tags:
+  - Artificial Intelligence
+  - Analytics
+  - AutoML
+  - Machine-Learning
+  tags_raw:
   - Ai
   - Analytics
   - Automl
@@ -194,6 +219,15 @@ maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
 tags:
+  - Database
+  - Enterprise
+  - JSON
+  - Machine-Learning
+  - NoSQL
+  - Oracle
+  - REST
+  - SQL
+tags_raw:
   - Database
   - Enterprise
   - Json
