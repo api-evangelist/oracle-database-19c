@@ -4,6 +4,18 @@ description: >-
   Oracle Database 19c is a multi-model database management system that provides a comprehensive platform for enterprise
   data management, analytics, and application development.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
