@@ -44,9 +44,9 @@ apis:
   humanURL: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/
   baseURL: https://example.oracle.com:8443/ords/
   tags:
-  - Document-Store
+  - Document Store
   - JSON
-  - Nosql
+  - NoSQL
   - Oracle
   tags_raw:
   - Document-Store
@@ -77,7 +77,7 @@ apis:
   tags:
   - Administration
   - Development
-  - Sql
+  - SQL
   - Web-Interface
   tags_raw:
   - Administration
@@ -96,9 +96,9 @@ apis:
   baseURL: mongodb://example.oracle.com:27017/
   tags:
   - Compatibility
-  - Document-Store
-  - Mongodb
-  - Nosql
+  - Document Store
+  - MongoDB
+  - NoSQL
   tags_raw:
   - Compatibility
   - Document-Store
@@ -139,7 +139,7 @@ apis:
   tags:
   - Artificial Intelligence
   - Analytics
-  - Automl
+  - AutoML
   - Machine-Learning
   tags_raw:
   - Ai
@@ -235,10 +235,10 @@ tags:
   - Enterprise
   - JSON
   - Machine-Learning
-  - Nosql
+  - NoSQL
   - Oracle
   - REST
-  - Sql
+  - SQL
 tags_raw:
   - Database
   - Enterprise
