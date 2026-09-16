@@ -1,8 +1,7 @@
 aid: oracle-database-19c
 name: Oracle Database 19c
-description: >-
-  Oracle Database 19c is a multi-model database management system that provides a comprehensive platform for enterprise
-  data management, analytics, and application development.
+description: Oracle Database 19c is a multi-model database management system that provides a comprehensive
+  platform for enterprise data management, analytics, and application development.
 type: Index
 deliveryModel:
   model: saas
@@ -34,12 +33,12 @@ access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/oracle-database-19c.png
 url: https://raw.githubusercontent.com/api-evangelist/oracle-database-19c/refs/heads/main/apis.yml
 created: '2024-01-15'
-modified: '2026-05-19'
+modified: '2026-09-16'
 specificationVersion: '0.23'
 apis:
 - name: Oracle Database SODA (Simple Oracle Document Access)
-  description: >-
-    Document-oriented NoSQL-style API for storing, retrieving, and querying JSON documents in Oracle Database.
+  description: Document-oriented NoSQL-style API for storing, retrieving, and querying JSON documents
+    in Oracle Database.
   image: https://www.oracle.com/a/ocom/img/sql.svg
   humanURL: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/
   baseURL: https://example.oracle.com:8443/ords/
@@ -57,8 +56,7 @@ apis:
   - type: Documentation
     url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/rest/
   - type: REST API Guide
-    url: >-
-      https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/rest/adrst/index.html
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/rest/adrst/index.html
   - type: Tutorial
     url: https://oracle.github.io/json-in-db/
   - type: JSONSchema
@@ -68,9 +66,8 @@ apis:
   - type: JSONLD
     url: json-ld/oracle-database-19c-context.jsonld
 - name: Oracle SQL Developer Web
-  description: >-
-    Browser-based interface for Oracle Database providing SQL worksheet, data modeler, and database administration
-    capabilities.
+  description: Browser-based interface for Oracle Database providing SQL worksheet, data modeler, and
+    database administration capabilities.
   image: https://www.oracle.com/a/ocom/img/sql.svg
   humanURL: https://www.oracle.com/database/technologies/appdev/sql-developer-web.html
   baseURL: https://example.oracle.com:8443/ords/sql-developer/
@@ -126,13 +123,12 @@ apis:
   - Rest
   properties:
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/database/oracle/oracle-database/19/adjsn/json-collections.html
+    url: https://docs.oracle.com/en/database/oracle/oracle-database/19/adjsn/json-collections.html
   - type: Developer Guide
     url: https://docs.oracle.com/en/database/oracle/oracle-database/19/adjsn/
 - name: Oracle Database REST API for AutoML
-  description: >-
-    REST APIs for Oracle Machine Learning AutoML capabilities including model building and deployment.
+  description: REST APIs for Oracle Machine Learning AutoML capabilities including model building and
+    deployment.
   image: https://www.oracle.com/a/ocom/img/sql.svg
   humanURL: https://docs.oracle.com/en/database/oracle/machine-learning/
   baseURL: https://example.oracle.com:8443/omlmod/
@@ -166,8 +162,7 @@ apis:
   - type: APIReference
     url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/19.2/orrst/
   - type: Authentication
-    url: >-
-      https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/19.2/orddg/developing-REST-applications.html
+    url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/19.2/orddg/developing-REST-applications.html
   - type: JSONLD
     url: json-ld/oracle-database-19c-context.jsonld
 - aid: oracle-database-19c:oracle-database-19c-metadata-api
@@ -185,8 +180,7 @@ apis:
   - type: APIReference
     url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/19.2/orrst/
   - type: Authentication
-    url: >-
-      https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/19.2/orddg/developing-REST-applications.html
+    url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/19.2/orddg/developing-REST-applications.html
   - type: JSONLD
     url: json-ld/oracle-database-19c-context.jsonld
 - aid: oracle-database-19c:oracle-database-19c-soda-api
@@ -204,8 +198,7 @@ apis:
   - type: APIReference
     url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/19.2/orrst/
   - type: Authentication
-    url: >-
-      https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/19.2/orddg/developing-REST-applications.html
+    url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/19.2/orddg/developing-REST-applications.html
   - type: JSONLD
     url: json-ld/oracle-database-19c-context.jsonld
 - aid: oracle-database-19c:oracle-database-19c-sql-api
@@ -223,56 +216,57 @@ apis:
   - type: APIReference
     url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/19.2/orrst/
   - type: Authentication
-    url: >-
-      https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/19.2/orddg/developing-REST-applications.html
+    url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/19.2/orddg/developing-REST-applications.html
   - type: JSONLD
     url: json-ld/oracle-database-19c-context.jsonld
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com
 tags:
-  - Database
-  - Enterprise
-  - JSON
-  - Machine-Learning
-  - NoSQL
-  - Oracle
-  - REST
-  - SQL
+- Database
+- Enterprise
+- JSON
+- Machine-Learning
+- NoSQL
+- Oracle
+- REST
+- SQL
 tags_raw:
-  - Database
-  - Enterprise
-  - Json
-  - Machine-Learning
-  - Nosql
-  - Oracle
-  - Rest
-  - Sql
+- Database
+- Enterprise
+- Json
+- Machine-Learning
+- Nosql
+- Oracle
+- Rest
+- Sql
 include:
-  - name: Oracle Database Enterprise Edition Features
-    url: https://www.oracle.com/database/technologies/enterprise-edition.html
-  - name: Oracle Cloud Infrastructure
-    url: https://cloud.oracle.com/
+- name: Oracle Database Enterprise Edition Features
+  url: https://www.oracle.com/database/technologies/enterprise-edition.html
+- name: Oracle Cloud Infrastructure
+  url: https://cloud.oracle.com/
 common:
-  - type: AgenticAccess
-    url: agentic-access/oracle-database-19c-agentic-access.yml
-  - type: DomainSecurity
-    url: security/oracle-database-19c-domain-security.yml
-  - type: Authentication
-    url: authentication/oracle-database-19c-authentication.yml
-  - type: OAuthScopes
-    url: scopes/oracle-database-19c-scopes.yml
-  - type: GitHubOrganization
-    url: https://github.com/oracle
-  - type: Licensing
-    url: https://www.oracle.com/database/technologies/database19c-license.html
-  - type: Security Alerts
-    url: https://www.oracle.com/security-alerts/
-  - type: Support Portal
-    url: https://support.oracle.com
-  - type: Community Forums
-    url: https://community.oracle.com/tech/developers/categories/oracle-database
-  - type: Downloads
-    url: https://www.oracle.com/database/technologies/oracle-database-software-downloads.html
-  - type: Pricing
-    url: https://www.oracle.com/database/technologies/database-pricing.html
+- type: Website
+  url: https://oracle.com
+- type: AgenticAccess
+  url: agentic-access/oracle-database-19c-agentic-access.yml
+- type: DomainSecurity
+  url: security/oracle-database-19c-domain-security.yml
+- type: Authentication
+  url: authentication/oracle-database-19c-authentication.yml
+- type: OAuthScopes
+  url: scopes/oracle-database-19c-scopes.yml
+- type: GitHubOrganization
+  url: https://github.com/oracle
+- type: Licensing
+  url: https://www.oracle.com/database/technologies/database19c-license.html
+- type: Security Alerts
+  url: https://www.oracle.com/security-alerts/
+- type: Support Portal
+  url: https://support.oracle.com
+- type: Community Forums
+  url: https://community.oracle.com/tech/developers/categories/oracle-database
+- type: Downloads
+  url: https://www.oracle.com/database/technologies/oracle-database-software-downloads.html
+- type: Pricing
+  url: https://www.oracle.com/database/technologies/database-pricing.html
