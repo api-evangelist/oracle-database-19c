@@ -1,10 +1,7 @@
 {
   "provider": "oracle-database-19c",
   "sources": [
-    "oracle-database-19c-autorest-api-openapi.yml",
-    "oracle-database-19c-metadata-api-openapi.yml",
-    "oracle-database-19c-soda-api-openapi.yml",
-    "oracle-database-19c-sql-api-openapi.yml"
+    "_original/oracle-database-19c-ords-openapi.yml"
   ],
   "outputs": [
     "oracle-database-19c-autorest-api-openapi.yml",
@@ -15,6 +12,15 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "oracle-database-19c-ords-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "oracle-database-19c-autorest-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "oracle-database-19c-metadata-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "oracle-database-19c-soda-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "oracle-database-19c-sql-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
